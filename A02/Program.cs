@@ -1,9 +1,10 @@
-﻿// ------------------------------------------------------------------------------------------------
+﻿// -------------------------------------------------------------------------------------------------
 // Training ~ A training program for new joinees at Metamation, Batch- July 2026.
 // Copyright (c) Trumpf Metamation India.
 // -------------------------------------------------------------------------------------------------
 // Program.cs
 // Program to play guessing game with the user. Program thinks of an number user need to find it in 7 tries
+// -------------------------------------------------------------------------------------------------
 
 namespace A02;
 
@@ -20,7 +21,7 @@ class GuessingGame {
       for (int i = 0; i < 7; i++) {
          Console.Write ("Enter your guess: ");
 
-         if (!(int.TryParse (Console.ReadLine ()!, out int guessNum)) || guessNum is < 1 or > 100) {
+         if (!int.TryParse (Console.ReadLine ()!, out int guessNum) || guessNum is < 1 or > 100) {
             Console.WriteLine ("Invalid Input");
             continue;
          }
