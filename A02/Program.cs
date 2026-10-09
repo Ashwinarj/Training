@@ -1,40 +1,34 @@
-﻿namespace A02;
+﻿// ------------------------------------------------------------------------------------------------
+// Training ~ A training program for new joinees at Metamation, Batch- July 2026. 
+// Copyright (c) Metamation India. 
+// -------------------------------------------------------------------------------------------------
+// Program.cs 
+// Program to find anagrams of all words in words.txt and store them in a file in a given format.
+
+namespace A02;
 
 class Program {
    static void Main (string[] args) {
-      Console.WriteLine ("Lets Play\nI will think an number between 1 and 100 Try to find it");
-      StartGame ();
+      Console.WriteLine ("Lets Play\nI will think a number between 1 and 100, try to find within 7 guesses"); 
+      Play ();
    }
-   static void StartGame () {
-      int val = new Random ().Next (1, 101);
-      int guess = new ();
-      for (; ; )
-      {
+
+   // Starts the game where it will guess an number between 1 and 100 and checks with users guess
+   static void Play () {
+      int val = new Random ().Next (1, 101), guess;
+
+      for (int i = 0; i < 7; i++) {
          Console.Write ("Enter your guess: ");
-         if (!ParseValue (Console.ReadLine ()!, out guess))
+         if(!int.TryParse(Console.ReadLine()!, out guess)) {
+            Console.WriteLine ("Invalid Input");
             continue;
-         if (guess < val)
-            Console.WriteLine ("Your Guess is too low");
-         else if (guess > val)
-            Console.WriteLine ("Your Guess is too high");
-         else {
-            Console.WriteLine ("You Guessed it right");
-            break;
          }
+         if (guess == val) {
+            Console.WriteLine ("You Guessed it right!!!");
+            return;
+         }
+         Console.WriteLine(guess > val ? "Your Guess is too high" : "Your Guess is too low");
       }
-   }
-   static bool ParseValue (string s, out int guess) {
-      if (!int.TryParse (s, out guess)) {
-         Console.WriteLine ("Invalid input");
-         return false;
-      }
-      if (guess < 1) {
-         Console.WriteLine ("Your guess is less than 1 provide an valid guess");
-         return false;
-      } else if (guess > 100) {
-         Console.WriteLine ("Your guess is more than 100 provide an valid guess");
-         return false;
-      }
-      return true;
+      Console.WriteLine ("Game Over!!!");
    }
 }
