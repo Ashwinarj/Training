@@ -3,7 +3,7 @@
 // Copyright (c) Trumpf Metamation India.
 // -------------------------------------------------------------------------------------------------
 // Program.cs
-// Program to find anagrams of all words in words.txt and store them in a file in a given format.
+// Program to play guessing game with the user. Program thinks of an number user need to find it in 7 tries
 
 namespace A02;
 
@@ -19,19 +19,16 @@ class GuessingGame {
 
       for (int i = 0; i < 7; i++) {
          Console.Write ("Enter your guess: ");
-         if(!int.TryParse(Console.ReadLine()!, out int guessNum)) {
+
+         if (!(int.TryParse (Console.ReadLine ()!, out int guessNum)) || guessNum is < 1 or > 100) {
             Console.WriteLine ("Invalid Input");
-            continue;
-         }
-         if (guessNum is < 1 or >100) {
-            Console.WriteLine ($"Invalid guess! Your guess is {(guessNum<1?"less than 1":"greater than 100")}");
             continue;
          }
          if (guessNum == rndNum) {
             Console.WriteLine ("You Guessed it right!!!");
             return;
          }
-         Console.WriteLine($"Your Guess is too {(guessNum> rndNum? "high":"low")}");
+         Console.WriteLine ($"Your Guess is too {(guessNum > rndNum ? "high" : "low")}");
       }
       Console.WriteLine ("Game Over!!!");
    }
