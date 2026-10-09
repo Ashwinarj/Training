@@ -17,10 +17,8 @@ class GuessingGame {
    static void Play () {
       Console.WriteLine ("Lets play\nI will think a number between 1 and 100, try to find within 7 guesses");
       int rndNum = new Random ().Next (1, 101);
-
       for (int i = 0; i < 7; i++) {
          Console.Write ("Enter your guess: ");
-
          if (!int.TryParse (Console.ReadLine ()!, out int guessNum) || guessNum is < 1 or > 100) {
             Console.WriteLine ("Invalid Input");
             continue;
