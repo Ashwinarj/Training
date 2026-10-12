@@ -19,11 +19,11 @@ class Program {
       List<(string Word, int Score, bool Panagram)> eligibleWords = [];
       foreach (var word in words) {
          if (!IsValidWord (word, letters)) continue;
-         bool panagram = letters.All (word.Contains);
-         eligibleWords.Add ((word, word.Length > 4 ? word.Length + (panagram ? 7 : 0) : 1, panagram));
+         bool IsPangram = letters.All (word.Contains);
+         eligibleWords.Add ((word, GetScore (word, IsPangram), IsPangram));
       }
-      foreach (var (word, score, panagram) in eligibleWords.OrderByDescending (a => a.Score)) {
-         if (panagram) ForegroundColor = ConsoleColor.Green;
+      foreach (var (word, score, pangram) in eligibleWords.OrderByDescending (a => a.Score)) {
+         if (pangram) ForegroundColor = ConsoleColor.Green;
          WriteLine ($"{score,2}. {word}");
          ResetColor ();
       }
@@ -33,4 +33,8 @@ class Program {
    // Checks whether a word meets all game rules.
    // Must be 4+ letters, include the center letter, and use only allowed letters.
    static bool IsValidWord (string word, char[] letters) => word.Length >= 4 && word.Contains (letters[0]) && word.All (letters.Contains);
+
+   // Calculates the word score based on its length.
+   // Four-letter words score 1 point; longer words score their length, with a 7-point pangram bonus.
+   static int GetScore (string word, bool IsPangram) => word.Length > 4 ? word.Length + (IsPangram ? 7 : 0) : 1;
 }
