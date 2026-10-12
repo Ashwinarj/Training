@@ -37,7 +37,7 @@ class GuessingGame {
       PrintMsg ("Game Over!!!", ConsoleColor.Red);
 
       // Display a message in custom console color.
-      void PrintMsg (string prompt, ConsoleColor consoleColor = ConsoleColor.Gray) {
+      static void PrintMsg (string prompt, ConsoleColor consoleColor = ConsoleColor.Gray) {
          ForegroundColor = consoleColor;
          WriteLine (prompt);
          ResetColor ();
