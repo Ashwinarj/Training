@@ -43,7 +43,7 @@ class SpellBeePredictor {
       eligibleWords = ArrangeWordByScore (eligibleWords);
       for (int i = 0; i < eligibleWords.Count; i++) {
          if (eligibleWords[i].panagram) Console.ForegroundColor = ConsoleColor.Green;
-         Console.WriteLine ($"{eligibleWords[i].score}. {eligibleWords[i].word}");
+         Console.WriteLine ($"{eligibleWords[i].score,2}. {eligibleWords[i].word}");
          Console.ResetColor ();
       }
    }
@@ -58,8 +58,8 @@ class SpellBeePredictor {
             if (words[i].score < words[j].score) {
                (words[i], words[j]) = (words[j], words[i]);
             }
-            if (words[i].score == words[i].score) {
-               if (words[i].word.CompareTo (words[i].word) > 0) {
+            if (words[i].score == words[j].score) {
+               if (words[i].word.CompareTo (words[j].word) > 0) {
                   (words[i], words[j]) = (words[j], words[i]);
                }
             }
