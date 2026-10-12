@@ -15,19 +15,19 @@ class Program {
    // and displays the results sorted by score.
    static void Main (string[] args) {
       char[] letters = { 'U', 'X', 'A', 'L', 'T', 'N', 'E' };
-      string[] words = File.ReadAllLines ("..\\..\\..\\words.txt");
-      List<(string word, int score, bool panagram)> eligibleWords = [];
+      var words = File.ReadAllLines ("..\\..\\..\\words.txt");
+      List<(string Word, int Score, bool Panagram)> eligibleWords = [];
       foreach (var word in words) {
          if (!IsValidWord (word, letters)) continue;
          bool panagram = letters.All (word.Contains);
          eligibleWords.Add ((word, word.Length > 4 ? word.Length + (panagram ? 7 : 0) : 1, panagram));
       }
-      foreach (var (word, score, panagram) in eligibleWords.OrderByDescending (a => a.score)) {
+      foreach (var (word, score, panagram) in eligibleWords.OrderByDescending (a => a.Score)) {
          if (panagram) ForegroundColor = ConsoleColor.Green;
          WriteLine ($"{score,2}. {word}");
          ResetColor ();
       }
-      WriteLine ($"---\n{eligibleWords.Sum (x => x.score)} total");
+      WriteLine ($"---\n{eligibleWords.Sum (x => x.Score)} total");
    }
 
    // Checks whether a word meets all game rules.
