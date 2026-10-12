@@ -17,12 +17,6 @@ class GuessingGame {
 
    // Starts a number-guessing game and checks the user's guesses against the target number.
    static void Play () {
-      // Display a message in a custom console color.
-      void PrintMsg (string prompt, ConsoleColor consoleColor = ConsoleColor.Gray) {
-         ForegroundColor = consoleColor;
-         WriteLine (prompt);
-         ResetColor ();
-      }
       PrintMsg ("Let's play\n" +
                "I will think of a number between 1 and 100, guess it within 7 guesses\n",
                ConsoleColor.Cyan);
@@ -41,5 +35,12 @@ class GuessingGame {
                   ConsoleColor.Blue);
       }
       PrintMsg ("Game Over!!!", ConsoleColor.Red);
+
+      // Display a message in custom console color.
+      void PrintMsg (string prompt, ConsoleColor consoleColor = ConsoleColor.Gray) {
+         ForegroundColor = consoleColor;
+         WriteLine (prompt);
+         ResetColor ();
+      }
    }
 }
