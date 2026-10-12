@@ -20,12 +20,12 @@ class Program {
       int guessNum = 0;
       for (int position = 0, divisor = 2; divisor <= 128; position++, divisor *= 2)
          if (!UserResponse ($"Is your number divided by {divisor} gives remainder {guessNum}? "))
-            guessNum |= (1 << position);
+            guessNum |= 1 << position;
       WriteLine ($"Your Guess is {guessNum}");
    }
 
    // Displays a Yes/No prompt and keeps asking until the user presses Y or N.
-   // Returns true for Y(Yes) and false for N(No).
+   // Returns true for (Y)es and false for (N)o.
    static bool UserResponse (string prompt) {
       for (; ; ) {
          Write (prompt);
