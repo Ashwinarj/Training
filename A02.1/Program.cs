@@ -6,33 +6,33 @@
 // Program to play guessing game with the user. Try to find the number guess by the user
 // -------------------------------------------------------------------------------------------------
 
-namespace A02b;
+using static System.Console;
 
-class GuessGame {
-   enum Response { Yes, No }
-   static void Main (string[] args) {
-      Play ();
-   }
+namespace A02._1;
+
+class Program {
+   static void Main (string[] args) => Play ();
 
    // Play Function executes the Guess Game
    static void Play () {
-      Console.WriteLine ("Think an number between 1 and 127\nI will try to guess it!!!");
-      Console.WriteLine ("Provide (Y)es or (N)o for the following questions");
+      WriteLine ("Think an number between 1 and 127\nI will try to guess it!!!");
+      WriteLine ("Provide (Y)es or (N)o for the following questions");
       int guessNum = 0;
       for (int position = 0, divisor = 2; divisor <= 128; position++, divisor *= 2) {
-         Console.Write ($"Is your number divided by {divisor} gives remainder {guessNum}? ");
-         if (UserResponse () is Response.No)
+         if (!UserResponse ($"Is your number divided by {divisor} gives remainder {guessNum}? "))
             guessNum |= (1 << position);
       }
-      Console.WriteLine ($"Your Guess is {guessNum}");
+      WriteLine ($"Your Guess is {guessNum}");
    }
 
    // UserResponse Function used to get Yes/No input from user
-   static Response UserResponse () {
+   static bool UserResponse (string prompt) {
       for (; ; ) {
+         Write (prompt);
          switch (Console.ReadKey (true).Key) {
-            case ConsoleKey.Y: Console.WriteLine ("Yes"); return Response.Yes;
-            case ConsoleKey.N: Console.WriteLine ("No"); return Response.No;
+            case ConsoleKey.Y: WriteLine ("Yes"); return true;
+            case ConsoleKey.N: WriteLine ("No"); return false;
+            default: WriteLine ("Invalid input! Press Y for Yes and N for No"); break;
          }
       }
    }
