@@ -15,7 +15,7 @@ class Program {
    // and displays the results sorted by score.
    static void Main (string[] args) {
       char[] letters = { 'U', 'X', 'A', 'L', 'T', 'N', 'E' };
-      var words = File.ReadAllLines ("..\\..\\..\\words.txt");
+      var words = File.ReadAllLines ("words.txt");
       List<(string Word, int Score, bool Panagram)> eligibleWords = [];
       foreach (var word in words) {
          if (!IsValidWord (word, letters)) continue;
