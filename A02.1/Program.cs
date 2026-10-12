@@ -13,23 +13,23 @@ namespace A02._1;
 class Program {
    static void Main (string[] args) => Play ();
 
-   // Play Function executes the Guess Game
+   // Guesses the user's number (1-127) by asking a sequence of Yes/No questions.
    static void Play () {
       WriteLine ("Think an number between 1 and 127\nI will try to guess it!!!");
       WriteLine ("Provide (Y)es or (N)o for the following questions");
       int guessNum = 0;
-      for (int position = 0, divisor = 2; divisor <= 128; position++, divisor *= 2) {
+      for (int position = 0, divisor = 2; divisor <= 128; position++, divisor *= 2)
          if (!UserResponse ($"Is your number divided by {divisor} gives remainder {guessNum}? "))
             guessNum |= (1 << position);
-      }
       WriteLine ($"Your Guess is {guessNum}");
    }
 
-   // UserResponse Function used to get Yes/No input from user
+   // Displays a Yes/No prompt and keeps asking until the user presses Y or N.
+   // Returns true for Y(Yes) and false for N(No).
    static bool UserResponse (string prompt) {
       for (; ; ) {
          Write (prompt);
-         switch (Console.ReadKey (true).Key) {
+         switch (ReadKey (true).Key) {
             case ConsoleKey.Y: WriteLine ("Yes"); return true;
             case ConsoleKey.N: WriteLine ("No"); return false;
             default: WriteLine ("Invalid input! Press Y for Yes and N for No"); break;
