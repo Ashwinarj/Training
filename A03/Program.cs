@@ -31,7 +31,7 @@ class Program {
    }
 
    // Checks whether a word meets all game rules.
-   // Must be 4+ letters, include the center letter, and use only allowed letters.
+   // Must be 4+ letters, include the first letter, and use only allowed letters.
    static bool IsValidWord (string word, char[] letters) => word.Length >= 4 && word.Contains (letters[0]) && word.All (letters.Contains);
 
    // Calculates the word score based on its length.
