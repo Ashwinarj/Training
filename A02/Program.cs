@@ -3,8 +3,10 @@
 // Copyright (c) Trumpf Metamation India.
 // -------------------------------------------------------------------------------------------------
 // Program.cs
-// Program to play guessing game with the user. Program thinks of an number user need to find it in 7 tries
+// Number-guessing game where the user tries to guess the program's number within 7 attempts
 // -------------------------------------------------------------------------------------------------
+
+using static System.Console;
 
 namespace A02;
 
@@ -13,22 +15,30 @@ class GuessingGame {
       Play ();
    }
 
-   // Starts the game where it will guess an number between 1 and 100 and checks with users guess
+   // Starts a number-guessing game and checks the user's guesses against the target number.
    static void Play () {
-      Console.WriteLine ("Lets play\nI will think a number between 1 and 100, try to find within 7 guesses");
+      PrintMsg("Lets play\nI will think a number between 1 and 100, try to find within 7 guesses",ConsoleColor.Magenta);
       int rndNum = new Random ().Next (1, 101);
       for (int i = 0; i < 7; i++) {
-         Console.Write ("Enter your guess: ");
-         if (!int.TryParse (Console.ReadLine ()!, out int guessNum) || guessNum is < 1 or > 100) {
-            Console.WriteLine ("Invalid Input");
+         Write ("Enter your guess: ");
+         if (!int.TryParse (Console.ReadLine (), out int guessNum) || guessNum is < 1 or > 100) {
+            PrintMsg("Invalid Input\n", ConsoleColor.Yellow);
             continue;
          }
          if (guessNum == rndNum) {
-            Console.WriteLine ("You Guessed it right!!!");
+            PrintMsg("You Guessed it right!!!",ConsoleColor.Green);
             return;
          }
-         Console.WriteLine ($"Your Guess is too {(guessNum > rndNum ? "high" : "low")}");
+         PrintMsg($"Your Guess is too {(guessNum > rndNum ? "high" : "low")}\n",ConsoleColor.Blue);
       }
-      Console.WriteLine ("Game Over!!!");
+      PrintMsg("Game Over!!!", ConsoleColor.Red);
+   }
+
+   // Display a message in a custom console color.
+   // Default color is Gray.
+   static void PrintMsg(string prompt, ConsoleColor consoleColor = ConsoleColor.Gray) {
+      ForegroundColor = consoleColor;
+      WriteLine (prompt);
+      ResetColor ();
    }
 }
