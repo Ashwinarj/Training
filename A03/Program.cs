@@ -19,7 +19,7 @@ class Program {
       List<(string Word, int Score, bool Panagram)> eligibleWords = [];
       foreach (var word in words) {
          if (!IsValidWord (word, letters)) continue;
-         bool IsPangram = letters.All (word.Contains);
+         var IsPangram = letters.All (word.Contains);
          eligibleWords.Add ((word, GetScore (word, IsPangram), IsPangram));
       }
       foreach (var (word, score, pangram) in eligibleWords.OrderByDescending (a => a.Score)) {
