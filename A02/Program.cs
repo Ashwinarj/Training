@@ -17,7 +17,7 @@ class GuessingGame {
 
    // Starts a number-guessing game and checks the user's guesses against the target number.
    static void Play () {
-      PrintMsg ("Let's play\nI will think of a number between 1 and 100, guess it within" +
+      PrintMsg ("Let's play\n I will think of a number between 1 and 100, guess it within" +
                 " 7 guesses\n", ConsoleColor.Cyan);
       int rndNum = new Random ().Next (1, 101);
       for (int i = 0; i < 7; i++) {
@@ -31,7 +31,7 @@ class GuessingGame {
             return;
          }
          PrintMsg ($"Your Guess is too {(guessNum > rndNum ? "high" : "low")}\n",
-                    ConsoleColor.Blue);
+                  ConsoleColor.Blue);
       }
       PrintMsg ("Game Over!!!", ConsoleColor.Red);
 
