@@ -23,7 +23,7 @@ class GuessingGame {
       for (int i = 0; i < 7; i++) {
          Write ("Enter your guess: ");
          if (!int.TryParse (ReadLine (), out int guessNum) || guessNum is < 1 or > 100) {
-            PrintMsg ("Invalid Input\n", ConsoleColor.Yellow);
+            PrintMsg ("Invalid input, Enter a number between 1 and 100.\n", ConsoleColor.Yellow);
             continue;
          }
          if (guessNum == rndNum) {
