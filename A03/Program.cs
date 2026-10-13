@@ -16,11 +16,11 @@ class Program {
    static void Main (string[] args) {
       char[] letters = ['U', 'X', 'A', 'L', 'T', 'N', 'E'];
       var words = File.ReadAllLines ("words.txt");
-      List<(string Word, int Score, bool Panagram)> eligibleWords = [];
+      List<(string Word, int Score, bool Pangram)> eligibleWords = [];
       foreach (var word in words) {
          if (!IsValidWord (word, letters)) continue;
-         var IsPangram = letters.All (word.Contains);
-         eligibleWords.Add ((word, GetScore (word, IsPangram), IsPangram));
+         var isPangram = letters.All (word.Contains);
+         eligibleWords.Add ((word, GetScore (word, isPangram), isPangram));
       }
       foreach (var (word, score, pangram) in eligibleWords.OrderByDescending (a => a.Score)) {
          if (pangram) ForegroundColor = ConsoleColor.Green;
@@ -37,6 +37,6 @@ class Program {
 
    // Calculates the word score based on its length.
    // Four-letter words score 1 point; longer words score their length, with a 7-point pangram bonus.
-   static int GetScore (string word, bool IsPangram) =>
-      word.Length > 4 ? word.Length + (IsPangram ? 7 : 0) : 1;
+   static int GetScore (string word, bool isPangram) =>
+      word.Length > 4 ? word.Length + (isPangram ? 7 : 0) : 1;
 }
