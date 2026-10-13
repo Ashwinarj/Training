@@ -14,13 +14,10 @@ class Program {
    static void Main (string[] args) {
       var words = File.ReadAllText ("words.txt");
       var freqTable = new Dictionary<char, int> ();
-      foreach (var ch in words) {
-         char letter = Char.ToUpperInvariant (ch);
-         if (!Char.IsLetter (letter)) continue;
-         freqTable[letter] = freqTable.ContainsKey (letter) ? ++freqTable[letter] : 1;
-      }
-      foreach (var (letter, count) in freqTable.OrderByDescending (x => x.Value).Take (7)) {
+      foreach (var ch in words)
+         if (ch >= 'A' && ch <= 'Z')
+            freqTable[ch] = freqTable.ContainsKey (ch) ? ++freqTable[ch] : 1;
+      foreach (var (letter, count) in freqTable.OrderByDescending (x => x.Value).Take (7))
          WriteLine ($"{letter} : {count}");
-      }
    }
 }
