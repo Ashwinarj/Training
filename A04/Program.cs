@@ -15,8 +15,8 @@ class Program {
       var words = File.ReadAllText ("words.txt");
       var freqTable = new Dictionary<char, int> ();
       foreach (var ch in words)
-         if (ch >= 'A' && ch <= 'Z')
-            freqTable[ch] = freqTable.ContainsKey (ch) ? ++freqTable[ch] : 1;
+         if (ch is >= 'A' and <= 'Z')
+            if (!freqTable.TryAdd (ch, 1)) freqTable[ch] += 1;
       foreach (var (letter, count) in freqTable.OrderByDescending (x => x.Value).Take (7))
          WriteLine ($"{letter} : {count}");
    }
